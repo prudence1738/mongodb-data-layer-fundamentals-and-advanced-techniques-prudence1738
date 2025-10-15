@@ -1,0 +1,133 @@
+# 🗄️ PLP Bookstore – MongoDB Week 1 Assignment Submission
+
+## 🚀 Objective
+This week’s goal was to learn and demonstrate MongoDB fundamentals, including:
+- Setting up MongoDB (locally or via MongoDB Atlas)
+- Creating databases and collections
+- Performing CRUD operations
+- Writing advanced queries using projection, sorting, and pagination
+- Building aggregation pipelines
+- Implementing indexes to improve performance
+
+---
+
+## 📂 Files Included in This Submission
+
+| File Name | Description |
+|------------|--------------|
+| `insert_books.js` | A Node.js script that connects to MongoDB and inserts multiple book documents into the `plp_bookstore` database. |
+| `queries.js` | A collection of MongoDB commands demonstrating CRUD operations, advanced queries, aggregation pipelines, and indexing. |
+| `README.md` | This file — explains the work done, structure, and how to run the scripts. |
+| `screenshot.png` | Screenshot showing the `books` collection in MongoDB Compass or Atlas. |
+
+---
+
+## 🛠️ Setup Instructions
+
+### 🧩 Step 1: Database Setup
+- I created (or would create) a database named **`plp_bookstore`**.
+- Inside it, I created a **`books`** collection.
+
+### 🧩 Step 2: Data Insertion
+- The `insert_books.js` script inserts at least **10 book documents**.
+- Each book contains:
+  - `title`  
+  - `author`  
+  - `genre`  
+  - `published_year`  
+  - `price`  
+  - `in_stock`  
+  - `pages`  
+  - `publisher`
+
+Example:  
+```json
+{
+  "title": "The Hobbit",
+  "author": "J.R.R. Tolkien",
+  "genre": "Fantasy",
+  "published_year": 1937,
+  "price": 14.99,
+  "in_stock": true,
+  "pages": 310,
+  "publisher": "George Allen & Unwin"
+}
+#How to run the scripts 
+Open the terminal and navigate to your project folder.
+
+*Run:
+npm init -y
+npm install mongodb
+node insert_books.js
+Once books are inserted, open mongosh or MongoDB Compass.
+
+
+*Run the commands from queries.js to perform CRUD, sorting, and aggregation.
+If using MongoDB Atlas:
+Replace the connection string in insert_books.js with your Atlas URI.
+
+#MongoDB Operations Performed
+
+#Basic CRUD Operations
+●Create: Inserted multiple documents using insertMany().
+●Read: Used find() to query books by genre, author, and year.
+●Update: Used updateOne() to modify book prices.
+●Delete: Used deleteOne() to remove a book by title.
+
+#Advanced Queries
+●Filtered books that are in stock and published after 2010.
+●Used projection to display only title, author, and price.
+●Implemented sorting by price (ascending and descending)
+●Implemented pagination using limit() and skip() (5 books per page).
+
+#Aggregation Pipelines
+Used MongoDB’s aggregation framework to analyze and group data.
+1.Average Price by Genre
+db.books.aggregate([
+  { $group: { _id: "$genre", averagePrice: { $avg: "$price" } } },
+  { $sort: { averagePrice: -1 } }
+]);
+
+2.Author with most books
+db.books.aggregate([
+  { $group: { _id: "$author", totalBooks: { $sum: 1 } } },
+  { $sort: { totalBooks: -1 } },
+  { $limit: 1 }
+]);
+
+#Indexing
+To improve query performance:
+Created a single-field index on the title field.
+Created a compound index on author and published_year.
+Used the explain("executionStats") method to verify performance improvements.
+Example:
+// Create index on title
+db.books.createIndex({ title: 1 });
+
+// Create compound index on author and published_year
+db.books.createIndex({ author: 1, published_year: -1 });
+
+// Check performance with explain()
+db.books.find({ title: "The Hobbit" }).explain("executionStats");
+
+#Expected Outcome
+Database: plp_bookstore
+Collection: books
+Successfully inserted at least 10 book documents
+All CRUD, filtering, and sorting queries executed correctly
+Aggregation pipelines produced accurate analytical results
+Indexes demonstrated faster query performance using explain()
+
+#Screenshot
+●A screenshot (screenshot.png) is included in the repository showing:
+The plp_bookstore database
+●The books collection
+●Sample book data inserted successfully
+
+🏁 Summary
+This project demonstrates my understanding of MongoDB fundamentals, including:
+●Database and collection creation
+●CRUD operations
+●Advanced querying techniques
+●Aggregation pipelines for data analysis
+●Indexing for query optimization
