@@ -18,7 +18,7 @@ This week’s goal was to learn and demonstrate MongoDB fundamentals, including:
 | `insert_books.js` | A Node.js script that connects to MongoDB and inserts multiple book documents into the `plp_bookstore` database. |
 | `queries.js` | A collection of MongoDB commands demonstrating CRUD operations, advanced queries, aggregation pipelines, and indexing. |
 | `README.md` | This file — explains the work done, structure, and how to run the scripts. |
-| `screenshot.png` | Screenshot showing the `books` collection in MongoDB Compass or Atlas. |
+| `screenshot.jpg` | Screenshot showing the `books` collection in MongoDB Compass or Atlas. |
 
 ---
 
@@ -119,7 +119,7 @@ Aggregation pipelines produced accurate analytical results
 Indexes demonstrated faster query performance using explain()
 
 #Screenshot
-●A screenshot (screenshot.png) is included in the repository showing:
+●A screenshot (screenshot.jpg) is included in the repository showing:
 The plp_bookstore database
 ●The books collection
 ●Sample book data inserted successfully
